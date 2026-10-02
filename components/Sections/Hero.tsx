@@ -1,8 +1,11 @@
 import React from 'react';
 import { ArrowDown } from 'lucide-react';
 import { StatusMessage } from '../UI/StatusMessage';
+import { useLanguage } from '../../context/LanguageContext';
 
 export const Hero: React.FC = () => {
+  const { t } = useLanguage();
+
   const scrollToStart = () => {
     const element = document.getElementById('prologue');
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -16,23 +19,23 @@ export const Hero: React.FC = () => {
       
       <div className="mb-6 animate-float">
         <span className="px-3 py-1 rounded-full border border-constellation-accent/30 bg-blue-900/20 text-constellation-accent text-xs font-mono">
-          현대 판타지 · 성좌물 · 로맨틱 코미디
+          {t.hero.badge}
         </span>
       </div>
 
       <h1 className="font-serif text-5xl md:text-8xl font-black mb-6 tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-400 drop-shadow-2xl">
-        고요한 언약의<br />
-        <span className="text-constellation-accent drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]">집행자</span>
+        {t.hero.titleMain}<br />
+        <span className="text-constellation-accent drop-shadow-[0_0_30px_rgba(59,130,246,0.6)]">{t.hero.titleAccent}</span>
       </h1>
 
-      <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 font-light font-sans">
-        "말 한마디로 우주를 바꾸는 절대 성좌가,<br className="hidden md:block"/>
-        당신의 헌터 각성을 위해 마트 시식 코너에 강림했습니다."
+      <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 font-light font-sans whitespace-pre-line leading-relaxed">
+        {t.hero.description}
       </p>
 
       <StatusMessage 
-        content={<>『고요한 언약의 집행자』님이 당신의 영혼을 발견하고 숨을 멈춥니다.</>}
-        subtext="주변 공기가 진동합니다!"
+        title={t.hero.statusTitle}
+        content={<>{t.hero.statusContent}</>}
+        subtext={t.hero.statusSubtext}
         className="animate-pulse-slow"
       />
 
@@ -40,7 +43,7 @@ export const Hero: React.FC = () => {
         onClick={scrollToStart}
         className="mt-12 group flex items-center gap-2 text-sm font-mono text-gray-500 hover:text-white transition-colors"
       >
-        SCROLL DOWN
+        {t.hero.scrollDown}
         <ArrowDown size={16} className="group-hover:translate-y-1 transition-transform" />
       </button>
     </section>
